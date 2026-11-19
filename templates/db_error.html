@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Database tidak tersedia{% endblock %}
+{% block content %}
+<div class="auth" style="max-width:600px">
+  <div class="auth-head">
+    <div class="badge-lg">{{ icon('alert', 30) }}</div>
+    <h1>Database tidak tersedia</h1>
+    <p class="mut">Dongle terdeteksi, tetapi aplikasi belum bisa memakai database.</p>
+  </div>
+  <div class="card">
+    <div class="alert err" role="alert">{{ icon('alert', 18) }}<div>{{ detail }}</div></div>
+    {% if engine == 'mysql' %}
+    <p class="small mut">Sambungan yang dipakai: <code>{{ cfg['user'] }}@{{ cfg['host'] }}:{{ cfg['port'] }}/{{ cfg['database'] }}</code></p>
+    <ol class="small">
+      <li>Pastikan server MySQL/MariaDB menyala (XAMPP: tekan Start pada MySQL).</li>
+      <li>Periksa pengaturan di file <code>mysql.json</code> pada folder data, atau jalankan ulang <code>SilentReport.bat</code> dan pilih menu pengaturan MySQL.</li>
+    </ol>
+    {% endif %}
+    <a class="btn btn-block" href="{{ url_for('index') }}">Coba lagi</a>
+  </div>
+</div>
+{% endblock %}
